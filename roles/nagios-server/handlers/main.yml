@@ -1,0 +1,10 @@
+---
+
+# roles/nagios-server/handlers/main.yml
+
+- name: reload nagios
+  service:
+    name: nagios
+    state: restarted
+    enabled: yes
+  tags: nagios-server

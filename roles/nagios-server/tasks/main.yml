@@ -1,0 +1,5 @@
+---
+# roles/nagios-server/tasks/main.yml
+
+- include: nagios-server.yml
+- include: nagios-config.yml

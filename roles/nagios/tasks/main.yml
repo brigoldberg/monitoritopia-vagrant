@@ -1,0 +1,29 @@
+---
+
+# roles/nagios/tasks/main.yml
+
+- name: nagios | install nagios packages
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ nagios_pkgs }}"
+  tags: nagios
+
+- name: nrpe | enable service
+  service:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+  tags: nagios
+  with_items:
+    - nrpe
+
+- name: nrpe | copy nrpe.cfg
+  template:
+    src: nrpe.cfg.j2
+    dest: /etc/nagios/nrpe.cfg
+    owner: root
+    group: root
+    mode: 0644
+  notify: reload nrpe
+  tags: nagios

@@ -1,0 +1,28 @@
+---
+
+# roles/nagios-server/tasks/main.yml
+
+- name: nagios-server | install nagios packages
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ nagios_server_pkgs }}"
+  tags: nagios-server
+
+- name: nagios-server | enable services
+  service:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+  tags: nagios-server
+  with_items:
+    - nagios
+    - httpd
+
+- name: nagios-server | add nagcheck alias
+  lineinfile:
+    path: /root/.bashrc
+    state: present
+    line: "alias nagcheck='/usr/sbin/nagios -vv /etc/nagios/nagios.cfg'"
+  tags: nagios-server
+

@@ -1,0 +1,15 @@
+---
+# roles/nagios-server/defaults.main.yml
+
+nagios_server_pkgs:
+  - nagios
+  - nagios-common
+  - nagios-contrib
+  - nagios-devel
+  - nagios-plugins
+  - nagios-plugins-all
+  - nrpe
+  - nsca
+  - perl-Nagios-Plugin
+  - pynag
+  - pynag-examples

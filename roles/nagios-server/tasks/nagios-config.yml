@@ -1,0 +1,33 @@
+---
+# name: roles/nagios-server/tasks/nagios-config.yml
+
+- name: nagios-server | nagios.cfg file
+  copy:
+    src: nagios.cfg
+    dest: /etc/nagios/nagios.cfg
+    owner: root
+    group: root
+    mode: 0644
+  notify: nagios-server | reload nagios
+  tags: nagios-server
+
+
+- name: nagios-server | nagios configuration files
+  copy:
+    src: "{{ item }}"
+    dest: "/etc/nagios/conf.d/{{ item }}"
+    owner: root
+    group: root
+    mode: 0644
+  tags: nagios-server
+  notify: reload nagios
+  with_items:
+    - commands.cfg
+    - contacts.cfg
+    - hostgroups.cfg
+    - servicegroups.cfg
+    - timeperiods.cfg
+    - linux-servers.cfg
+    - host-template.cfg
+    - service-template.cfg
+    - global-checks.cfg
