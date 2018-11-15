@@ -1,0 +1,4 @@
+---
+
+- include: mongodb.yml
+- include: alerta-server.yml

@@ -8,3 +8,10 @@
   roles:
     - nagios-server
     - nagios
+
+- hosts: nagios-client
+  remote_user: vagrant
+  become: yes
+
+  roles:
+    - nagios

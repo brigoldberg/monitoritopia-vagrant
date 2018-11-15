@@ -1,0 +1,85 @@
+---
+
+- name: alerta-server | install dependencies
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ alerta_req_pkgs }}"
+  tags: alerta-server
+
+- name: alerta-server | install alerta server, client and uwsgi
+  pip:
+    name: "{{ item }}"
+  with_items:
+    - alerta-server
+    - alerta
+    - uwsgi
+  tags: alerta-server
+
+- name: alerta | create required directories
+  file:
+    path:  "{{ item }}"
+    owner: nginx
+    group: nginx
+    state: directory
+  with_items:
+    - "/var/www/html"
+    - "/var/run/alerta"
+    - "/var/log/alerta"
+  tags: alerta
+
+- name: alerta | download web console
+  get_url:
+    url: "{{ alerta_web_console_url }}"
+    dest: /var/www/html/alerta-webui.tar.gz
+  tags: alerta
+
+- name: alerta | unzip web console package
+  unarchive:
+    src:  /var/www/html/alerta-webui.tar.gz
+    dest: /var/www/html
+    remote_src: yes
+  tags: alerta
+
+- name: alerta | install web console
+  shell: "cp -r alerta-angular-alerta-webui-*/app/* /var/www/html/"
+  args:
+    chdir: /var/www/html
+    creates: /var/www/html/config.js
+  tags: alerta
+
+# Alerta UI configuration file.
+- name: alerta | copy config.js
+  copy:
+    src:  config.js
+    dest: /var/www/html/config.js
+    owner: nginx
+    group: nginx
+    mode: 0644
+  tags: alerta
+
+- name: alerta | copy /var/www/wsgi.py
+  copy:
+    src:   wsgi.py
+    dest:  /var/www/wsgi.py
+  tags: alerta
+
+# configuration file for alerta-app
+- name: alerta | copy /etc/alertad.conf
+  copy:
+    src:  alertad.conf
+    dest: /etc/alertad.conf
+  tags: alerta
+
+- name: alerta | create /etc/uwsgi.ini
+  template:
+    src:  uwsgi.ini.j2
+    dest: /etc/uwsgi.ini
+  tags: alerta
+
+- name: alerta | create alerta-app systemd file
+  template:
+    src:  alerta-app.service.j2
+    dest: /etc/systemd/system/alerta-app.service
+  notify: alerta daemon-reload
+  tags: alerta

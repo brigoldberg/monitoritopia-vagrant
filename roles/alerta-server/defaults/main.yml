@@ -1,0 +1,14 @@
+---
+
+mongodb_baseurl: "https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.0/x86_64/"
+mongodb_version: "4.0.4"
+
+alerta_server_version: "6.2.0"
+alerta_web_console_url: "https://github.com/alerta/angular-alerta-webui/tarball/master"
+
+alerta_req_pkgs:
+  - pcre-devel
+  - python-pip 
+  - python-devel 
+  - gcc 
+  - git

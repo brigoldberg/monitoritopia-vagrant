@@ -1,0 +1,27 @@
+---
+
+- name: nginx | Install nginx
+  package:
+    name: nginx
+    state: present
+  tags: nginx
+
+- name: nginx | Base nginx configuration file
+  template: 
+    src:   nginx.conf.j2
+    dest:  /etc/nginx/nginx.conf
+    owner: nginx
+    group: nginx
+    mode:  0644
+  notify: restart nginx
+  tags: nginx
+
+- name: nginx | Alerta nginx server config
+  template:
+    src:   nginx-alerta.conf.j2
+    dest:  /etc/nginx/conf.d/alerta.conf
+    owner: nginx
+    group: nginx
+    mode:  0644
+  notify: restart nginx
+  tags: nginx
