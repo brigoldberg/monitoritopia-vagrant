@@ -2,11 +2,11 @@
 
 - name:  mongodb | install MongoDB repository
   yum_repository:
-    name: "mongo-org-4.0"
+    name: "mongo-org-3.6"
     description: "MongoDB Repository"
     baseurl: "{{ mongodb_baseurl }}"
     gpgcheck: yes
-    gpgkey: "https://www.mongodb.org/static/pgp/server-4.0.asc"
+    gpgkey: "https://www.mongodb.org/static/pgp/server-3.6.asc"
     enabled: yes
   tags: mongodb
 

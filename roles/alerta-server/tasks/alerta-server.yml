@@ -9,11 +9,7 @@
 
 - name: alerta-server | install alerta server, client and uwsgi
   pip:
-    name: "{{ item }}"
-  with_items:
-    - alerta-server
-    - alerta
-    - uwsgi
+    name: ['alerta-server=5.2.0','alerta','uwsgi']
   tags: alerta-server
 
 - name: alerta | create required directories
