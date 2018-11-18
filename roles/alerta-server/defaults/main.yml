@@ -4,8 +4,7 @@ mongodb_baseurl: "https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/3.
 mongodb_version: "3.6.9"
 
 alerta_server_version: "5.2.0"
-# alerta_web_console_url: "https://github.com/alerta/angular-alerta-webui/tarball/master"
-alerta_web_console_url: "https://github.com/alerta/angular-alerta-webui/tree/v5.2.9"
+alerta_web_console_url: "https://github.com/alerta/angular-alerta-webui/archive/v5.2.9.tar.gz"
 
 alerta_req_pkgs:
   - pcre-devel

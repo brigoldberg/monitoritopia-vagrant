@@ -9,7 +9,7 @@
 
 - name: alerta-server | install alerta server, client and uwsgi
   pip:
-    name: ['alerta-server=5.2.0','alerta','uwsgi']
+    name: ['alerta-server==5.2.0','alerta','uwsgi']
   tags: alerta-server
 
 - name: alerta | create required directories
@@ -38,7 +38,7 @@
   tags: alerta
 
 - name: alerta | install web console
-  shell: "cp -r alerta-angular-alerta-webui-*/app/* /var/www/html/"
+  shell: "cp -r *angular-alerta-webui-*/app/* /var/www/html/"
   args:
     chdir: /var/www/html
     creates: /var/www/html/config.js

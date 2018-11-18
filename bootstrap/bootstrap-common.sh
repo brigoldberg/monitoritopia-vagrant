@@ -4,7 +4,7 @@ sed -i 's/^SELINUX=.*/SELINUX=disabled/g' /etc/selinux/config
 setenforce 0
 
 yum -y install epel-release
-yum -y install htop vim tree wget ansible net-tools socat
+yum -y install htop vim tree wget ansible net-tools unzip
 
 ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime
 
