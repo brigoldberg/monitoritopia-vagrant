@@ -1,0 +1,10 @@
+---
+
+- include: mongodb.yml
+  when: "'alerta-server' in group_names"
+- include: nginx.yml
+  when: "'alerta-server' in group_names"
+- include: alerta-server.yml
+  when: "'alerta-server' in group_names"
+
+- include: alerta-client.yml

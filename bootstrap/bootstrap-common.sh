@@ -8,7 +8,7 @@ yum -y install htop vim tree wget ansible net-tools unzip
 
 ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime
 
-echo "192.168.33.51      monitor-1" >> /etc/hosts
+echo "192.168.33.51      monitor-1 alerta nagios" >> /etc/hosts
 echo "192.168.33.101     client-1" >> /etc/hosts
 
 cat << EOF > /home/vagrant/.vimrc

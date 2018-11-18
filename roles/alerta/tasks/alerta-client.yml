@@ -1,0 +1,28 @@
+---
+
+- name: alerta | install dependencies
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - python-pip
+  tags: alerta
+
+- name: alerta | install alerta client
+  pip:
+    name: "{{ item }}"
+  with_items:
+    - alerta==5.2.1
+  tags: alerta
+
+- name: alerta | copy alerta client configuration
+  copy:
+    src:   alerta.conf 
+    dest:  "{{ item.file }}"
+    owner: "{{ item.owner }}"
+    group: "{{ item.owner }}"
+    mode: 0644
+  with_items:
+      - { file: "/root/.alerta.conf", owner: "root" }
+      - { file: "/home/vagrant/.alerta.conf", owner: "vagrant" }
+

@@ -1,5 +1,0 @@
----
-
-- include: mongodb.yml
-- include: nginx.yml
-- include: alerta-server.yml

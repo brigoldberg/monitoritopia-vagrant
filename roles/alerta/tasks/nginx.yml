@@ -1,17 +1,15 @@
 ---
 
-# name: roles/nginx/tasks/main.yml
-
 - name: nginx | Install nginx
   package:
     name: nginx
     state: present
   tags: nginx
 
-- name: nginx | Base nginx configuration file
+- name: nginx | Alerta nginx server config
   template:
-    src:   nginx.conf.j2
-    dest:  /etc/nginx/nginx.conf
+    src:   nginx-alerta.conf.j2
+    dest:  /etc/nginx/conf.d/alerta.conf
     owner: nginx
     group: nginx
     mode:  0644
