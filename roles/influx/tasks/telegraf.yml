@@ -1,0 +1,7 @@
+---
+
+- name: influx | install telegraf
+  package:
+    name: telegraf
+    state: present
+  tags: influx

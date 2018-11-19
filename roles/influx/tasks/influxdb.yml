@@ -1,0 +1,7 @@
+---
+
+- name: influx | install influxdb
+  package:
+    name: influxdb
+    state: present
+  tags: influx

@@ -1,0 +1,11 @@
+---
+
+- name: influx | install influx repository
+  yum_repository:
+    name: "influxdata"
+    description: "Influx Data Yum Repository"
+    baseurl: "{{ influx_baseurl }}"
+    gpgcheck: yes
+    gpgkey: "{{ influx_gpg_key }}"
+    enabled: yes
+ tags: influx

@@ -1,0 +1,4 @@
+---
+
+influx_baseurl: "https://repos.influxdata.com/centos/$releasever/$basearch/stable"
+influx_gpg_key: "https://repos.influxdata.com/influxdb.key"

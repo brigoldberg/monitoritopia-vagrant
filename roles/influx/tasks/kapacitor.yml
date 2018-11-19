@@ -1,0 +1,7 @@
+---
+
+- name: influx | install kapacitor
+  package:
+    name: kapacitor
+    state: present
+  tags: influx

@@ -1,0 +1,6 @@
+---
+
+- include: influx-repo.yml
+- include: telegraf.yml
+- include: influxdb.yml
+- include: kapacitor.yml

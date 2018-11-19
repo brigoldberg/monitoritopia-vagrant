@@ -1,7 +1,7 @@
 ---
 # playbook/nagios-server.yml
 
-- hosts: nagios-server
+- hosts: monitor
   remote_user: vagrant
   become: yes
 
@@ -9,7 +9,7 @@
     - nagios-server
     - nagios
 
-- hosts: nagios-client
+- hosts: all
   remote_user: vagrant
   become: yes
 
